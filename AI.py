@@ -1,5 +1,4 @@
-from random import randint
-
+import itertools
 table = []
 
 def initialize_table():
@@ -11,11 +10,8 @@ def initialize_table():
 	return
 
 def omit_random_numbers(num_of_omissions): # is to be changed with amin's method!!!
-	for i in xrange(num_of_omissions): 
-		rand_num1 = randint(0, 8)
-		rand_num2 = randint(0, 8)
-		# print str(rand_num1) + " " + str(rand_num2)
-		table[rand_num1][rand_num2] = "*"
+	
+	table[rand_num1][rand_num2] = "*"
 	return
 
 class Node:
@@ -98,4 +94,8 @@ while True:
 	pos_x = raw_input()
 	pos_y = raw_input()
 	node1.print_table()
+<<<<<<< HEAD
 	print node1.verify_table(num, int(pos_x), int(pos_y))
+=======
+	print node1.verify_table(num, int(pos_x), int(pos_y))
+>>>>>>> a3cbf259ad5121291127a3ca0407fdb87f1bed32
