@@ -23,12 +23,12 @@ class Node:
 		self.table = table
 
 	def print_table(self):
-	for rows in self.table:
-		print rows
+		for rows in self.table:
+			print rows
 
 	def verify_table(self, inserted_num, new_x, new_y):
 		for temp_list in self.table: # checking column rule
-			if temp_list[new_y] == inserted_num:
+			if temcp_list[new_y] == inserted_num:
 				return False
 		
 		if inserted_num in self.table[new_x]: # checking row rule
@@ -38,60 +38,64 @@ class Node:
 			if new_y <=2:
 				for x in xrange(0, 3):
 					for y in xrange(0, 3):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 			elif (new_y >= 3 and new_y <=5):
 				for x in xrange(0, 3):
 					for y in xrange(3, 6):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 			elif new_y >= 6:
 				for x in xrange(0, 3):
 					for y in xrange(6, 9):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 		
 		if (new_x >= 3 and new_x <= 5):
 			if new_y <=2:
 				for x in xrange(3, 6):
 					for y in xrange(0, 3):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 			elif (new_y >= 3 and new_y <=5):
 				for x in xrange(3, 6):
 					for y in xrange(3, 6):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 			elif new_y >= 6:
 				for x in xrange(3, 6):
 					for y in xrange(6, 9):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 		if new_x >= 6:
 			if new_y <=2:
 				for x in xrange(6, 9):
 					for y in xrange(0, 3):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 			elif (new_y >= 3 and new_y <=5):
 				for x in xrange(6, 9):
 					for y in xrange(3, 6):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 			elif new_y >= 6:
 				for x in xrange(6, 9):
 					for y in xrange(6, 9):
-						if table[x][y] == inserted_num:
+						if self.table[x][y] == inserted_num:
 							return False
 		return True
 
+	# def goal_test(self)
+	# 	if ()
+
 initialize_table()
 omit_random_numbers(40)
-print_table()
-
+# print_table()
+node1 = Node(table)
+node1.print_table()
 while True:
 	num = raw_input()
 	pos_x = raw_input()
 	pos_y = raw_input()
-	print_table()
-	print verify_table(num, int(pos_x), int(pos_y))
+	node1.print_table()
+	print node1.verify_table(num, int(pos_x), int(pos_y))
