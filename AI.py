@@ -1,4 +1,6 @@
+import copy
 import itertools
+import random
 table = []
 
 def initialize_table():
@@ -9,14 +11,20 @@ def initialize_table():
 		table.append(line_stripped.split(","))
 	return
 
-def omit_random_numbers(num_of_omissions): # is to be changed with amin's method!!!
-	
-	table[rand_num1][rand_num2] = "*"
-	return
+def omit_random_numbers(_tab, it_num):
+    tab = copy.deepcopy(_tab)
+    all_permutations = list(itertools.product('012345678', repeat=2))
+    random.shuffle(all_permutations)
+    blank_positions = all_permutations[0:it_num]
+    # print len(blank_positions)
+    for elem in blank_positions:
+        tab[int(elem[0])][int(elem[1])] = '*'
+    return tab, blank_positions
 
 class Node:
-	def __init__(self, table):
+	def __init__(self, table, blank_positions):
 		self.table = table
+		self.blank_positions = blank_positions
 
 	def print_table(self):
 		for rows in self.table:
@@ -24,7 +32,7 @@ class Node:
 
 	def verify_table(self, inserted_num, new_x, new_y):
 		for temp_list in self.table: # checking column rule
-			if temcp_list[new_y] == inserted_num:
+			if temp_list[new_y] == inserted_num:
 				return False
 		
 		if inserted_num in self.table[new_x]: # checking row rule
@@ -36,7 +44,7 @@ class Node:
 					for y in xrange(0, 3):
 						if self.table[x][y] == inserted_num:
 							return False
-			elif (new_y >= 3 and new_y <=5):
+			elif new_y >= 3 and new_y <=5:
 				for x in xrange(0, 3):
 					for y in xrange(3, 6):
 						if self.table[x][y] == inserted_num:
@@ -85,17 +93,12 @@ class Node:
 	# 	if ()
 
 initialize_table()
-omit_random_numbers(40)
-# print_table()
-node1 = Node(table)
+table, blank_positions = omit_random_numbers(table, 40)
+node1 = Node(table, blank_positions)
 node1.print_table()
 while True:
 	num = raw_input()
 	pos_x = raw_input()
 	pos_y = raw_input()
 	node1.print_table()
-<<<<<<< HEAD
 	print node1.verify_table(num, int(pos_x), int(pos_y))
-=======
-	print node1.verify_table(num, int(pos_x), int(pos_y))
->>>>>>> a3cbf259ad5121291127a3ca0407fdb87f1bed32
